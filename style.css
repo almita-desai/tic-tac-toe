@@ -1,25 +1,37 @@
 body{
     margin: 0;
     padding: 0;
-    box-sizing: 0;
+    box-sizing: border-box;
     font-family: "Permanent Marker",cursive;
     overflow-y: hidden;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: rgb(255, 255, 255);
-    
+    background-color: rgb(229, 249, 250);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
-
 h1{
     text-align: center;
+    font-size: 40px;
+    color: #444;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    transition: color 0.3s ease;
     
 }
+.mode-description{
+    font-size: 15px;
+    color: #444;
+    text-align: center;
+    font-weight: 600;
+  
+}
 button{
-    background-color: #138065;
+    background-color:#138065;
     color: white;
-    width: 120px;
+    width: 150px;
     height: 60px;
     font-size: 20px;
     font-weight: bold;
@@ -27,31 +39,56 @@ button{
     border: none;
     box-shadow: 5px 4px 7px rgb(196, 196, 196);
     cursor: pointer;
-    margin-left: 110px;
+    margin-left: 26px;
+    display: inline-block; 
+    align-self: center; 
+    transition: all 0.3s ease;
+
 } 
 button:hover{
     background-color: #189b7a;
+    transform: translateY(-3px);
 }
 
 .cell{
-    width: 110px;
-    height:110px;
-    border: 2px  solid rgb(0, 0, 0);
-    box-shadow: 2px 1px 3px rgb(196, 196, 196);
+    width: 120px;
+    height:120px;
+    border: 1px solid #3b3b3b;
+    box-shadow: 3px 4px 6px rgb(82, 82, 82);
     font-size: 70px;
+    color: #3e3e3e;
+    font-weight:500;
     line-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    
 
+}
+.cell:hover{
+    background-color: #f9f9f9;
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
 }
 
 #cell-container{
     display: grid;
     grid-template-columns: repeat(3,1fr);
+    gap: 10px;
     width: 350px;
     height: 350px;
     text-align: center;
+    
+
 }
 #status{
     font-size: 30px;
+    margin-top: 50px;
+    text-align: center;
+    color: #3e3e3e;
 }
 #toggle-theme {
     position: absolute;
@@ -63,20 +100,37 @@ button:hover{
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
+    cursor: pointer; 
+    background-color:#138065;
+    transition: background-color 0.3s ease;
+}
+.dark-mode #toggle-theme{
+    background-color:#222;
 }
 
 .dark-mode {
     background-color: #121212;
     color: white;
 }
-
+.dark-mode h1{
+    color: #f1f1f1;
+}
+.dark-mode .mode-description{
+    color: white;
+}
 .dark-mode .cell {
-    border-color: white;
+    background-color: #242424;
+    border-color: #666;
     box-shadow: none;
+    color: #fff;
    
 }
-
+.dark-mode .cell:hover {
+    background-color: #3c3c3c;
+}
+.dark-mode #status{
+    color:#fff;
+}
 .dark-mode button {
     background-color: #222;
     box-shadow: none;
@@ -84,4 +138,45 @@ button:hover{
 
 .dark-mode button:hover {
     background-color: #333;
+}
+@media (max-width: 768px) 
+{
+    .mode-description 
+    { 
+        font-size: 14px; 
+    }
+
+    button 
+    { 
+        width: 130px; 
+        font-size: 18px; 
+    }
+
+    .cell 
+    { 
+        width: 100px; 
+        height: 100px; 
+        font-size: 50px; 
+    }
+}
+
+@media (max-width: 480px) 
+{
+    .mode-description 
+    { 
+        font-size: 13px; 
+    }
+
+    button 
+    { 
+        width: 120px; 
+        font-size: 16px; 
+    }
+
+    .cell 
+    { 
+        width: 80px; 
+        height: 80px; 
+        font-size: 40px; 
+    }
 }

@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
-    <button id="toggle-theme">🌙</button>
-
-    <div class="game">
-        <h1>TIC TAC TOE</h1>
+<button id="toggle-theme">🌙</button>
+  <div class="game">
+        <h1>TIC TAC TOE</h1> 
+        <div class="mode-description">
+            <p>Play Solo: Challenge the computer<br>Play Duo: Play with a friend</p>
+        </div>
         <div class="box">
         <div id="cell-container">
             <div cellIndex="0" class="cell"></div>
@@ -26,7 +29,8 @@
     </div>
         <h2 id="status"></h2>
          <button class="restart" id="restart">Restart</button>
+         <button id="single-player">Play Solo</button>
     </div>
-     <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
