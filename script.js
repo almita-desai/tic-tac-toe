@@ -42,8 +42,8 @@ function initializeGame() {
 }
 
 function clickedCell(cellIndex) {
-    console.log("Cell clicked!");
-    console.log(`Cell index: ${cellIndex}`);  
+    // console.log("Cell clicked!");
+    // console.log(`Cell index: ${cellIndex}`);  
 
     if (options[cellIndex] !== "" || !running) {
         return;
@@ -60,7 +60,7 @@ function clickedCell(cellIndex) {
 }
 
 function updateCell(cell, cellIndex) {
-    console.log(`Updating cell at index ${cellIndex} to ${currentPlayer}`);  
+    // console.log(`Updating cell at index ${cellIndex} to ${currentPlayer}`);  
 
     options[cellIndex] = currentPlayer;
     cell.textContent = currentPlayer;
@@ -74,6 +74,7 @@ function changePlayer() {
 
 function checkWinner() {
     let winner = false;
+    let winningPlayer=null
     for (let i = 0; i < winConditions.length; i++) {
         const condition = winConditions[i];
         const cellA = options[condition[0]];
@@ -85,11 +86,19 @@ function checkWinner() {
         }
         if (cellA === cellB && cellB === cellC) {
             winner = true;
+            winningPlayer=cellA
             break;
         }
     }
 
     if (winner) {
+        if (!isSinglePlayer) {
+            triggerConfetti();
+        }
+
+        if (winningPlayer === 'X' && isSinglePlayer) {
+            triggerConfetti(); 
+        }
         statusText.textContent = `${currentPlayer} Wins!`;
         running = false;
         return true
@@ -112,6 +121,8 @@ function restartGame() {
 
 const toggleThemeBtn = document.querySelector("#toggle-theme");
 const body = document.body;
+body.classList.add("dark-mode");
+toggleThemeBtn.textContent = "☀️";
 
 toggleThemeBtn.addEventListener("click", toggleTheme);
 
@@ -119,10 +130,15 @@ function toggleTheme() {
     body.classList.toggle("dark-mode");
     toggleThemeBtn.textContent = body.classList.contains("dark-mode") ? "☀️" : "🌙";
 }
-toggleThemeBtn.addEventListener("click", toggleTheme);
+
 
 
 function bestmove(){
+let randomMoveChance=Math.random()
+if(randomMoveChance<0.1){
+    makeRandomMove()
+}
+else{
     let bestscore=-Infinity
     let move=-1
     for( let i=0;i<options.length;i++){
@@ -139,8 +155,23 @@ function bestmove(){
     if(move!=-1){
         updateCell(cells[move],move)
     }
+}
     if (!checkWinner()) {  
         changePlayer(); 
+    }
+
+}
+function makeRandomMove(){
+    let emptyCells=[]
+    for(let i=0;i<options.length;i++){
+        if(options[i]==''){
+            emptyCells.push(i)
+        }
+    }
+    if(emptyCells.length>0){
+        let randomIndex=Math.floor(Math.random()*emptyCells.length)
+        let move=emptyCells[randomIndex]
+        updateCell(cells[move],move)
     }
 }
 function minimax(options,depth,isMaximizing){
@@ -210,4 +241,17 @@ function getWinner() {
     } 
         return null
     
+}
+function triggerConfetti() {
+    confetti({
+        particleCount:200,
+        spread: 400,
+        origin: { x: 0, y: 1 }
+    });
+
+    confetti({
+        particleCount: 200,
+        spread: 400,
+        origin: { x: 1, y: 1 }
+    });
 }
