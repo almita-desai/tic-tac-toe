@@ -2,14 +2,14 @@ const cells = document.querySelectorAll(".cell");
 const statusText = document.querySelector("#status");
 const restartbtn = document.querySelector("#restart");
 const singlePlayerBtn = document.querySelector("#single-player");
-let isSinglePlayer = false
+let isSinglePlayer = true
 singlePlayerBtn.addEventListener('click',function(){
     isSinglePlayer=!isSinglePlayer
     if(isSinglePlayer){
-        singlePlayerBtn.textContent='Play Duo'
+        singlePlayerBtn.textContent='Play Solo'
     }
     else{
-        singlePlayerBtn.textContent='Play Solo'
+        singlePlayerBtn.textContent='Play Duo'
     }
     restartGame()
 })
@@ -87,6 +87,10 @@ function checkWinner() {
         if (cellA === cellB && cellB === cellC) {
             winner = true;
             winningPlayer=cellA
+            cells[condition[0]].style.boxShadow='3px 6px 6px rgb(21, 255, 0)'
+            cells[condition[1]].style.boxShadow='3px 6px 6px rgb(21, 255, 0)'
+            cells[condition[2]].style.boxShadow='3px 6px 6px rgb(21, 255, 0)'
+    
             break;
         }
     }
@@ -116,6 +120,7 @@ function restartGame() {
     options = ["", "", "", "", "", "", "", "", ""];
     statusText.textContent = `${currentPlayer}'s Turn`;
     cells.forEach((cell) => (cell.textContent = ""));
+    cells.forEach((cell) => (cell.style.boxShadow = " 0 8px 12px rgba(0, 0, 0, 0.1)"));
     running = true;
 }
 
