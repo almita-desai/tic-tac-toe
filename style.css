@@ -141,6 +141,9 @@ button:hover{
 }
 @media (max-width: 768px) 
 {
+    body{
+        font-family:'Poppins', sans-serif;
+    }
     .mode-description 
     { 
         font-size: 14px; 
@@ -150,6 +153,8 @@ button:hover{
     { 
         width: 130px; 
         font-size: 18px; 
+        margin-bottom: 40px;
+        margin-left: 36px;
     }
 
     .cell 
@@ -157,11 +162,15 @@ button:hover{
         width: 100px; 
         height: 100px; 
         font-size: 50px; 
+        margin: 14px;
     }
 }
 
 @media (max-width: 480px) 
 {
+     body{
+        font-family:'Poppins', sans-serif;
+    }
     .mode-description 
     { 
         font-size: 13px; 
@@ -171,6 +180,8 @@ button:hover{
     { 
         width: 120px; 
         font-size: 16px; 
+        margin-bottom: 40px;
+        margin-left: 36px;
     }
 
     .cell 
@@ -178,5 +189,6 @@ button:hover{
         width: 80px; 
         height: 80px; 
         font-size: 40px; 
+        margin: 14px;
     }
 }
